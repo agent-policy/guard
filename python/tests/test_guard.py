@@ -12,10 +12,8 @@ from agent_policy_guard import (
     Policy,
     PolicyEngine,
     PolicySet,
-    Verdict,
     load_policy_set_from_str,
 )
-
 
 # ── Helper ───────────────────────────────────────────────────────────────
 
@@ -119,7 +117,8 @@ class TestConditionMatching:
         )
         engine = PolicyEngine(ps)
         assert engine.evaluate(EvalContext(tool="bash", model="gpt-5.2")).effect == Effect.deny
-        assert engine.evaluate(EvalContext(tool="bash", model="claude-sonnet-4.6")).effect == Effect.allow
+        ctx = EvalContext(tool="bash", model="claude-sonnet-4.6")
+        assert engine.evaluate(ctx).effect == Effect.allow
 
     def test_tool_glob(self) -> None:
         ps = _make_policy_set(

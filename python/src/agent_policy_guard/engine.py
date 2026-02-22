@@ -8,10 +8,8 @@ from typing import Any
 
 from .match import list_matches
 from .models import (
-    Channel,
     Condition,
     Defaults,
-    Effect,
     EvalContext,
     Policy,
     PolicySet,

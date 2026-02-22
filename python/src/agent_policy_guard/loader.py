@@ -63,7 +63,7 @@ def load_policy_set_from_dict(data: dict[str, Any]) -> PolicySet:
     api_version = data.get("apiVersion", "agent-policy/v1")
     kind = data.get("kind", "PolicySet")
     if kind != "PolicySet":
-        raise ValueError("Unsupported kind: %s (expected PolicySet)" % kind)
+        raise ValueError(f"Unsupported kind: {kind} (expected PolicySet)")
     return PolicySet(
         api_version=api_version,
         kind=kind,
