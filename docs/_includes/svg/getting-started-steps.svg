@@ -1,31 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 90" fill="none" style="width:100%;max-width:560px;margin:1.5em auto;display:block">
   <defs>
     <marker id="gs-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#7b68ee"/>
+      <polygon points="0 0, 8 3, 0 6" fill="#D29922"/>
     </marker>
   </defs>
 
   <!-- Step 1: Write -->
-  <rect x="10" y="8" width="130" height="52" rx="8" fill="#1a1a2e" stroke="#7b68ee" stroke-width="1.5"/>
-  <text x="75" y="30" text-anchor="middle" fill="#ccc" font-family="system-ui,sans-serif" font-size="12" font-weight="600">1. Write YAML</text>
-  <text x="75" y="48" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="10">policy.yaml</text>
+  <rect x="10" y="8" width="130" height="52" rx="8" fill="#131920" stroke="#D29922" stroke-width="1.5"/>
+  <text x="75" y="30" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">1. Write YAML</text>
+  <text x="75" y="48" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">policy.yaml</text>
 
   <!-- Arrow -->
-  <line x1="140" y1="34" x2="176" y2="34" stroke="#7b68ee" stroke-width="1.5" marker-end="url(#gs-arr)"/>
+  <line x1="140" y1="34" x2="176" y2="34" stroke="#D29922" stroke-width="1.5" marker-end="url(#gs-arr)"/>
 
   <!-- Step 2: Load -->
-  <rect x="186" y="8" width="130" height="52" rx="8" fill="#1a1a2e" stroke="#7b68ee" stroke-width="1.5"/>
-  <text x="251" y="30" text-anchor="middle" fill="#ccc" font-family="system-ui,sans-serif" font-size="12" font-weight="600">2. Load</text>
-  <text x="251" y="48" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="10">PolicyEngine(ps)</text>
+  <rect x="186" y="8" width="130" height="52" rx="8" fill="#131920" stroke="#D29922" stroke-width="1.5"/>
+  <text x="251" y="30" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">2. Load</text>
+  <text x="251" y="48" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">PolicyEngine(ps)</text>
 
   <!-- Arrow -->
-  <line x1="316" y1="34" x2="352" y2="34" stroke="#7b68ee" stroke-width="1.5" marker-end="url(#gs-arr)"/>
+  <line x1="316" y1="34" x2="352" y2="34" stroke="#D29922" stroke-width="1.5" marker-end="url(#gs-arr)"/>
 
   <!-- Step 3: Evaluate -->
-  <rect x="362" y="8" width="130" height="52" rx="8" fill="#1a1a2e" stroke="#22c55e" stroke-width="1.5"/>
-  <text x="427" y="30" text-anchor="middle" fill="#ccc" font-family="system-ui,sans-serif" font-size="12" font-weight="600">3. Evaluate</text>
-  <text x="427" y="48" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="10">resolve(ctx)</text>
+  <rect x="362" y="8" width="130" height="52" rx="8" fill="#131920" stroke="#3FB950" stroke-width="1.5"/>
+  <text x="427" y="30" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">3. Evaluate</text>
+  <text x="427" y="48" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">resolve(ctx)</text>
 
   <!-- Label -->
-  <text x="280" y="74" text-anchor="middle" fill="#666" font-family="system-ui,sans-serif" font-size="10">Available in Python, TypeScript, and Go with identical semantics.</text>
+  <text x="280" y="74" text-anchor="middle" fill="#484F58" font-family="system-ui,sans-serif" font-size="10">Available in Python, TypeScript, and Go with identical semantics.</text>
 </svg>

@@ -11,10 +11,10 @@ Agent Policy is not yet published to any package registry. While the project is 
 
 ## Prerequisites
 
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
-  <img src="{{ '/assets/img/sdk-python.svg' | relative_url }}" alt="Python 3.10+" height="32" style="background:none;border:none;padding:0">
-  <img src="{{ '/assets/img/sdk-typescript.svg' | relative_url }}" alt="TypeScript / Node 18+" height="32" style="background:none;border:none;padding:0">
-  <img src="{{ '/assets/img/sdk-go.svg' | relative_url }}" alt="Go 1.21+" height="32" style="background:none;border:none;padding:0">
+<div class="sdk-badges" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+  <img src="{{ '/assets/img/sdk-python.svg' | relative_url }}" alt="Python 3.10+" width="120" height="32">
+  <img src="{{ '/assets/img/sdk-typescript.svg' | relative_url }}" alt="TypeScript / Node 18+" width="140" height="32">
+  <img src="{{ '/assets/img/sdk-go.svg' | relative_url }}" alt="Go 1.21+" width="120" height="32">
 </div>
 
 ## Installation

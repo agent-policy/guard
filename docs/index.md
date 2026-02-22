@@ -65,10 +65,10 @@ action = engine.resolve(EvalContext(tool="bash", mode="background"))
 - **Priority ordering** -- lower number wins, first match returns. Predictable, auditable evaluation.
 - **Three SDKs** -- Python, TypeScript, and Go with identical semantics. Write policies once, evaluate anywhere.
 
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
-  <img src="{{ '/assets/img/sdk-python.svg' | relative_url }}" alt="Python SDK" height="32" style="background:none;border:none;padding:0">
-  <img src="{{ '/assets/img/sdk-typescript.svg' | relative_url }}" alt="TypeScript SDK" height="32" style="background:none;border:none;padding:0">
-  <img src="{{ '/assets/img/sdk-go.svg' | relative_url }}" alt="Go SDK" height="32" style="background:none;border:none;padding:0">
+<div class="sdk-badges" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+  <img src="{{ '/assets/img/sdk-python.svg' | relative_url }}" alt="Python SDK" width="120" height="32">
+  <img src="{{ '/assets/img/sdk-typescript.svg' | relative_url }}" alt="TypeScript SDK" width="140" height="32">
+  <img src="{{ '/assets/img/sdk-go.svg' | relative_url }}" alt="Go SDK" width="120" height="32">
 </div>
 - **JSON Schema** -- validate policies in CI before they reach production.
 
