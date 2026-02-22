@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <clipPath id="shield-clip">
+      <path d="M64 8 L112 30 L112 62 C112 90 92 112 64 122 C36 112 16 90 16 62 L16 30 Z"/>
+    </clipPath>
+  </defs>
+  <!-- Shield body -->
+  <path d="M64 8 L112 30 L112 62 C112 90 92 112 64 122 C36 112 16 90 16 62 L16 30 Z"
+        fill="#4f46e5" stroke="none"/>
+  <!-- Cage grid clipped to shield -->
+  <g clip-path="url(#shield-clip)" stroke="#3730a3" stroke-width="3" stroke-linecap="round">
+    <!-- Vertical bars (evenly spaced at x = 34, 46, 58, 70, 82, 94) -->
+    <line x1="34" y1="10" x2="34" y2="120"/>
+    <line x1="46" y1="10" x2="46" y2="120"/>
+    <line x1="58" y1="10" x2="58" y2="120"/>
+    <line x1="70" y1="10" x2="70" y2="120"/>
+    <line x1="82" y1="10" x2="82" y2="120"/>
+    <line x1="94" y1="10" x2="94" y2="120"/>
+    <!-- Horizontal bars -->
+    <line x1="10" y1="44" x2="118" y2="44"/>
+    <line x1="10" y1="62" x2="118" y2="62"/>
+    <line x1="10" y1="80" x2="118" y2="80"/>
+    <line x1="10" y1="98" x2="118" y2="98"/>
+  </g>
+  <!-- Padlock body -->
+  <rect x="51" y="64" width="26" height="20" rx="4" fill="#fff" opacity="0.95"/>
+  <!-- Padlock shackle -->
+  <path d="M56 64 L56 57 A8 8 0 0 1 72 57 L72 64" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity="0.95"/>
+  <!-- Keyhole dot -->
+  <circle cx="64" cy="73" r="3" fill="#4f46e5"/>
+</svg>

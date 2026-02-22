@@ -1,0 +1,33 @@
+/* Agent Policy docs -- custom overrides for just-the-docs dark theme */
+
+/* Give SVG diagrams a subtle container */
+svg {
+  border-radius: 8px;
+  background: #0d1117;
+  padding: 16px;
+  border: 1px solid #21262d;
+}
+
+/* Inline logos should not get the diagram container style */
+img[style*="background:none"] {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Site header logo */
+.site-logo {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Callout box tweaks */
+.warning {
+  border-left-color: #f59e0b;
+}
+
+/* Code block improvements */
+.highlight pre {
+  border-radius: 6px;
+}

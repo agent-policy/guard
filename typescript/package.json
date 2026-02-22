@@ -1,0 +1,44 @@
+{
+  "name": "@agent-policy/guard",
+  "version": "0.1.0",
+  "description": "Declarative guardrail policies for controlling AI agent autonomy.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "license": "MIT",
+  "author": "Aymen Furter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aymenfurter/agent-policy.git",
+    "directory": "guard/typescript"
+  },
+  "homepage": "https://aymenfurter.github.io/agent-policy/",
+  "bugs": {
+    "url": "https://github.com/aymenfurter/agent-policy/issues"
+  },
+  "keywords": ["agent", "policy", "guardrails", "hitl", "ai-safety"],
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "LICENSE", "README.md"],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0",
+    "@types/js-yaml": "^4.0.9"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

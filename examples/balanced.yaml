@@ -1,0 +1,78 @@
+# Balanced policy set -- for standard models in production.
+# Low-risk tools pass through content safety filter.
+# Medium-risk requires AITL review in background.
+# High-risk requires human approval or is denied.
+
+apiVersion: agent-policy/v1
+kind: PolicySet
+
+metadata:
+  name: balanced
+  description: >
+    Balanced policy for standard production deployments.
+    Low-risk tools pass through content safety filter,
+    medium-risk needs AITL review in background,
+    high-risk always needs human approval.
+  version: "1.0.0"
+  labels:
+    tier: "2"
+    environment: production
+
+defaults:
+  effect: hitl
+  channel: chat
+
+context_fallbacks:
+  scheduler: background
+  bot_processor: background
+  realtime: background
+
+policies:
+  - id: allow-low-risk
+    name: Allow low-risk tools everywhere
+    priority: 10
+    condition:
+      risk: [low]
+    effect: allow
+
+  - id: filter-interactive-medium
+    name: Filter medium-risk tools in interactive mode
+    priority: 20
+    condition:
+      modes: [interactive]
+      risk: [medium]
+    effect: filter
+
+  - id: deny-background-high
+    name: Deny high-risk tools in background
+    priority: 30
+    condition:
+      modes: [background]
+      risk: [high]
+    effect: deny
+
+  - id: hitl-interactive-high
+    name: Require approval for high-risk interactive tools
+    priority: 40
+    condition:
+      modes: [interactive]
+      risk: [high]
+    effect: hitl
+    channel: chat
+
+  - id: aitl-background-medium
+    name: AI review for medium-risk background tools
+    priority: 50
+    condition:
+      modes: [background]
+      risk: [medium]
+    effect: aitl
+
+  - id: phone-verify-calls
+    name: Phone verify outbound voice calls
+    priority: 25
+    condition:
+      tools:
+        - make_voice_call
+    effect: pitl
+    channel: phone

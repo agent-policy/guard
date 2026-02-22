@@ -1,0 +1,96 @@
+# Restrictive policy set -- for smaller models or high-security environments.
+# Only read-only tools auto-approved. Everything else requires approval
+# or is denied outright in background.
+
+apiVersion: agent-policy/v1
+kind: PolicySet
+
+metadata:
+  name: restrictive
+  description: >
+    High-security policy. Only read-only tools auto-approved.
+    All writes and executions require human approval in interactive.
+    Most tools denied in background mode.
+  version: "1.0.0"
+  labels:
+    tier: "3"
+    environment: production
+
+defaults:
+  effect: deny
+  channel: chat
+
+context_fallbacks:
+  scheduler: background
+  bot_processor: background
+  realtime: background
+
+policies:
+  - id: allow-readonly
+    name: Allow read-only tools
+    priority: 10
+    condition:
+      tools:
+        - view
+        - grep
+        - glob
+        - list_scheduled_tasks
+        - search_memories_tool
+    effect: allow
+
+  - id: allow-low-risk-interactive
+    name: Allow low-risk tools in interactive mode
+    priority: 15
+    condition:
+      modes: [interactive]
+      risk: [low]
+    effect: allow
+
+  - id: hitl-interactive-writes
+    name: Require approval for file writes
+    priority: 30
+    condition:
+      modes: [interactive]
+      tools:
+        - create
+        - edit
+    effect: hitl
+    channel: chat
+
+  - id: hitl-interactive-terminal
+    name: Require approval for terminal access
+    priority: 35
+    condition:
+      modes: [interactive]
+      tools:
+        - bash
+        - run
+    effect: hitl
+    channel: chat
+
+  - id: hitl-interactive-mcp
+    name: Require approval for MCP servers
+    priority: 40
+    condition:
+      modes: [interactive]
+      mcp_servers:
+        - "*"
+    effect: hitl
+    channel: chat
+
+  - id: deny-background-writes
+    name: Deny all writes in background
+    priority: 20
+    condition:
+      modes: [background]
+      risk: [medium, high]
+    effect: deny
+
+  - id: phone-verify-calls
+    name: Phone verify outbound voice calls
+    priority: 25
+    condition:
+      tools:
+        - make_voice_call
+    effect: pitl
+    channel: phone

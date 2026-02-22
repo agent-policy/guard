@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/agent-policy/guard/spec/schema.json",
+  "title": "Agent Policy Guard -- PolicySet Schema",
+  "description": "Declarative guardrail policies for controlling AI agent autonomy.",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "policies"],
+  "additionalProperties": false,
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "enum": ["agent-policy/v1"],
+      "description": "Schema version identifier."
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["PolicySet"],
+      "description": "Resource kind. Must be PolicySet."
+    },
+    "metadata": {
+      "$ref": "#/definitions/Metadata"
+    },
+    "defaults": {
+      "$ref": "#/definitions/Defaults"
+    },
+    "policies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Policy"
+      },
+      "minItems": 0,
+      "description": "Ordered list of guardrail policies. Evaluated by priority (ascending)."
+    },
+    "context_fallbacks": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Maps execution context names to their fallback context. When no policy matches a context, the engine retries with the fallback. Example: {\"scheduler\": \"background\"} means scheduler falls back to background policies."
+    }
+  },
+  "definitions": {
+    "Metadata": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable name for this policy set."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description."
+        },
+        "version": {
+          "type": "string",
+          "description": "Semver version of this policy set."
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Key-value labels for organization and filtering."
+        }
+      }
+    },
+    "Defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "effect": {
+          "$ref": "#/definitions/Effect",
+          "description": "Default effect when no policy matches. Default: ask."
+        },
+        "channel": {
+          "$ref": "#/definitions/Channel",
+          "description": "Default approval channel for 'ask' effects. Default: chat."
+        }
+      }
+    },
+    "Effect": {
+      "type": "string",
+      "description": "The effect to apply. Well-known values: allow (auto-approve), deny (block), hitl (human-in-the-loop approval), aitl (AI-in-the-loop review), pitl (phone-in-the-loop verification), filter (content safety filter), ask (alias for hitl). Custom string values are supported for extensibility.",
+      "examples": ["allow", "deny", "hitl", "aitl", "pitl", "filter", "ask"]
+    },
+    "Channel": {
+      "type": "string",
+      "enum": ["chat", "phone"],
+      "description": "Approval channel: chat (in-session prompt) or phone (outbound call)."
+    },
+    "Policy": {
+      "type": "object",
+      "required": ["id", "effect"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-z0-9][a-z0-9_-]*$",
+          "description": "Unique identifier for this policy (kebab-case or snake_case)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name."
+        },
+        "description": {
+          "type": "string",
+          "description": "Explanation of what this policy does and why."
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this policy is active. Default: true."
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9999,
+          "default": 100,
+          "description": "Evaluation priority. Lower number = higher priority. Default: 100."
+        },
+        "condition": {
+          "$ref": "#/definitions/Condition"
+        },
+        "effect": {
+          "$ref": "#/definitions/Effect"
+        },
+        "channel": {
+          "$ref": "#/definitions/Channel",
+          "description": "Override approval channel for this policy. Only relevant when effect is 'ask'."
+        }
+      }
+    },
+    "Condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Matching criteria. All specified fields must match (AND). Each field's list uses OR logic.",
+      "properties": {
+        "modes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Execution modes to match: interactive, background, voice, api."
+        },
+        "models": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Model name patterns (glob). E.g. 'gpt-*', 'claude-sonnet-*'."
+        },
+        "channels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Communication channels: web, teams, telegram, slack, voice."
+        },
+        "tools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tool name patterns (glob). E.g. 'bash', 'mcp:github-*', 'skill:web-*'."
+        },
+        "mcp_servers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "MCP server name patterns (glob). E.g. 'github-mcp-server', 'azure-*'."
+        },
+        "risk": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "description": "Risk levels to match. The caller provides the risk level at evaluation time."
+        },
+        "users": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "User ID patterns (glob). Match specific users or groups."
+        },
+        "sessions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Session ID patterns (glob)."
+        }
+      }
+    }
+  }
+}

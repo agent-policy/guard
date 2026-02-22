@@ -1,0 +1,61 @@
+# Permissive policy set -- for strong frontier models in trusted environments.
+# All interactive tools pass through content safety filter.
+# Background high-risk requires human approval.
+
+apiVersion: agent-policy/v1
+kind: PolicySet
+
+metadata:
+  name: permissive
+  description: >
+    Minimal friction policy for trusted environments.
+    All interactive tools pass through a content safety filter.
+    Background high-risk tools require human approval.
+  version: "1.0.0"
+  labels:
+    tier: "1"
+    environment: development
+
+defaults:
+  effect: allow
+  channel: chat
+
+context_fallbacks:
+  scheduler: background
+  bot_processor: background
+  realtime: background
+
+policies:
+  - id: allow-readonly
+    name: Allow read-only tools everywhere
+    priority: 10
+    condition:
+      tools:
+        - view
+        - grep
+        - glob
+        - list_scheduled_tasks
+        - search_memories_tool
+    effect: allow
+
+  - id: hitl-background-infra
+    name: Require approval for background infra tools
+    priority: 50
+    condition:
+      modes: [background]
+      tools:
+        - "mcp:github-*"
+        - "mcp:azure-*"
+        - bash
+        - run
+    effect: hitl
+    channel: chat
+
+  - id: phone-verify-voice-calls
+    name: Phone verify outbound voice calls
+    priority: 30
+    condition:
+      tools:
+        - make_voice_call
+    effect: pitl
+    channel: phone
