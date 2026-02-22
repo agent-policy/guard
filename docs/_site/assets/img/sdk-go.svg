@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" fill="none">
-  <rect width="120" height="32" rx="6" fill="#1a1a2e" stroke="#00add8" stroke-width="1"/>
-  <!-- Go gopher eye -->
-  <circle cx="15" cy="14" r="7" fill="#00add8" opacity="0.2"/>
-  <circle cx="15" cy="14" r="4" fill="#00add8"/>
-  <circle cx="16" cy="13" r="1.5" fill="#fff"/>
-  <text x="30" y="17" fill="#e6edf3" font-family="system-ui,sans-serif" font-size="11" font-weight="600" dominant-baseline="central">Go</text>
-  <text x="48" y="17" fill="#555" font-family="system-ui,sans-serif" font-size="9" font-weight="400" dominant-baseline="central">1.21+</text>
-</svg>
