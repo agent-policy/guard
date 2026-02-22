@@ -1,11 +1,11 @@
 title: Agent Policy
 description: A declarative policy language for controlling AI agent autonomy.
-baseurl: /agent-policy
+baseurl: /guard
 url: ""
 
-logo: /agent-policy/assets/img/logo.svg
+logo: /assets/img/logo.svg
 
-remote_theme: just-the-docs/just-the-docs@v0.10.0
+theme: just-the-docs
 
 color_scheme: dark
 
@@ -16,7 +16,7 @@ exclude:
 
 aux_links:
   "GitHub":
-    - "https://github.com/aymenfurter/agent-policy"
+    - "https://github.com/agent-policy/guard"
 
 nav_sort: order
 
@@ -35,7 +35,3 @@ footer_content: "Agent Policy is open source under the MIT License."
 
 search_enabled: true
 search.heading_level: 3
-
-# Custom head content for additional CSS
-head_css:
-  - assets/css/custom.css

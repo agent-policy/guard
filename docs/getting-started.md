@@ -22,7 +22,7 @@ Agent Policy is not yet published to any package registry. While the project is 
 Clone the repository:
 
 ```bash
-git clone https://github.com/aymenfurter/agent-policy.git
+git clone https://github.com/agent-policy/guard.git
 cd agent-policy
 ```
 
